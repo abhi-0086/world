@@ -1,4 +1,50 @@
-.country-detail-wrapper {
+/* CountryDetail.css */
+
+/* Base styles for larger screens */
+.country-detail-card {
   display: flex;
-  gap: 1rem;
+  justify-content: center;
+  align-items: center;
+  height: 80vh;
+}
+
+.country-content {
+  display: flex;
+  gap: 2rem;
+  align-items: center;
+  justify-content: space-evenly;
+  border: 1px solid #ccc;
+  padding: 40px;
+  width: 100%;
+  max-width: fit-content;
+  border-radius: 5px;
+}
+
+.country-content img {
+  max-height: 200px;
+  object-fit: contain;
+  margin-bottom: 10px;
+}
+
+.country-content div {
+  margin-bottom: 10px;
+}
+
+.country-content div:last-child {
+  margin-bottom: 0;
+}
+
+/* Media query for smaller screens */
+@media (max-width: 768px) {
+  .country-content {
+    margin-top: 100px;
+    flex-direction: column;
+    width: 90%; /* Reduce the width for smaller screens */
+  }
+  .country-content img {
+    width: 100%;
+    max-height: 200px;
+    object-fit: contain;
+    margin-bottom: 1.2rem;
+  }
 }

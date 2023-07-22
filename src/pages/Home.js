@@ -7,19 +7,22 @@ import InputLabel from "@mui/material/InputLabel";
 import MenuItem from "@mui/material/MenuItem";
 import FormControl from "@mui/material/FormControl";
 import Select from "@mui/material/Select";
-import { TextField } from "@mui/material";
+import { TextField, CircularProgress } from "@mui/material";
 
 function Home() {
+  const [loading, setLoading] = useState(true);
   const [allCountriesList, setAllCountriesList] = useState([]);
   const [filteredcountriesList, setFilteredCountriesList] = useState([]);
   const [region, setRegion] = useState("");
   const [countryName, setCountryName] = useState("");
+
   useEffect(() => {
+    setLoading(true);
     getAllCountries().then((result) => {
       const countries = result.data;
       setAllCountriesList(countries);
       setFilteredCountriesList(countries);
-      console.log(countries);
+      setLoading(false);
     });
   }, []);
 
@@ -67,7 +70,7 @@ function Home() {
           value={countryName}
           onChange={handleCountryNameChange}
         />
-        <FormControl sx={{ m: 1, minWidth: 160 }}>
+        <FormControl sx={{ minWidth: 160 }}>
           <InputLabel id="demo-simple-select-helper-label">
             Filter by Region
           </InputLabel>
@@ -88,21 +91,29 @@ function Home() {
         </FormControl>
       </div>
       <div className="country-card-wrapper">
-        {filteredcountriesList.map((country) => (
-          <Link
-            to={`/countries/${country.alpha3Code}`}
-            style={{ textDecoration: "none" }}
-            key={country.name}
-          >
-            <CountryCard
+        {loading ? (
+          <CircularProgress
+            style={{
+              color: "green",
+            }}
+          />
+        ) : (
+          filteredcountriesList.map((country) => (
+            <Link
+              to={`/countries/${country.alpha3Code}`}
+              style={{ textDecoration: "none" }}
               key={country.name}
-              countryName={country.name}
-              capital={country.capital}
-              population={country.population}
-              flagUrl={country.flags?.png}
-            />
-          </Link>
-        ))}
+            >
+              <CountryCard
+                key={country.name}
+                countryName={country.name}
+                capital={country.capital}
+                population={country.population}
+                flagUrl={country.flags?.png}
+              />
+            </Link>
+          ))
+        )}
       </div>
     </div>
   );

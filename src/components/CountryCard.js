@@ -8,7 +8,7 @@ export default function CountryCard(props) {
   return (
     <Card sx={{ maxWidth: 345, width: 250 }}>
       <CardMedia
-        sx={{ height: 150 }}
+        sx={{ height: 150, width: "100%", objectFit: "contain" }}
         image={props.flagUrl}
         title={props.countryName}
       />

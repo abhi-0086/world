@@ -1,6 +1,43 @@
 .country-card-wrapper {
+  margin-top: 2rem;
   display: flex;
-  gap: 1rem;
+  gap: 2rem;
   flex-wrap: wrap;
   justify-content: center;
+  align-items: center;
+}
+
+/* Home.css */
+
+.filters {
+  display: flex;
+  gap: 1rem;
+  justify-content: space-evenly;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+/* Optional: Add some spacing between the filter elements for better visual separation */
+.filters > * {
+  margin-right: 10px;
+}
+
+/* Optional: Adjust the width of the TextField and Select elements as needed */
+#outlined-basic {
+  width: 200px;
+}
+
+/* Optional: Adjust the width of the Select element as needed */
+#demo-simple-select {
+  width: 200px;
+}
+
+@media screen and (max-width: 768px) {
+  .filters {
+    flex-direction: column;
+  }
+  .filters > * {
+    margin-bottom: 10px;
+    margin-right: 0;
+  }
 }
